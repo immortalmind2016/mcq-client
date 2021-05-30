@@ -1,5 +1,12 @@
+body {
+  background: #ececec !important;
+}
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -36,4 +43,33 @@
   100% {
     transform: translateY(0px);
   }
+}
+
+.student-form {
+  margin: 50px auto;
+  width: 50%;
+  position: relative;
+  background-color: white;
+  padding: 40px 22px;
+  border-radius: 10px;
+}
+.overlay {
+  position: absolute;
+  height: 100%;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  display: flex;
+}
+.navbar {
+  background-color: white;
+  padding: 20px;
+}
+
+.question {
+  text-align: left;
 }
