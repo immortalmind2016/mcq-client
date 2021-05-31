@@ -46,7 +46,6 @@ const Exam = () => {
       
        if(loadQuestion){
        
-        console.log("🚀 ~ file: Exam.tsx ~ line 29 ~ Exam ~ examState", examState)
 
             let q :any=examState.currentQuestion
             if(q){

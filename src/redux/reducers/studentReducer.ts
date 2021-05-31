@@ -4,7 +4,6 @@ export const studentReducer = (
   state: StudentState | {} = { loading: false },
   action: Action
 ) => {
-  console.log("ACTION ", action);
   let payload: Student = action.payload as Student;
 
   switch (action.type) {

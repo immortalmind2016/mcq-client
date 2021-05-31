@@ -16,7 +16,6 @@ export const loadStudent = () => {
   };
 };
 export const createStudent = (name: string) => {
-  console.log("🚀 ~ file: studentActions.ts ~ line 6 ~ name", name);
   return async (dispatch: Function) => {
     const response = await axios.post<Student>(`${ROOT_URL}/api/student`, {
       name,

@@ -14,7 +14,6 @@ import Exam from "./components/Exam";
 
 function App() {
   const studentState:StudentState=useSelector<StoreState>(state=>state.student) as StudentState
-  console.log("🚀 ~ file: App.tsx ~ line 18 ~ App ~ studentState", studentState,Object.keys(studentState))
 
   return <>
 

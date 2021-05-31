@@ -8,7 +8,6 @@ import { StoreState } from '../redux/store';
 const NavBar = () => {
     const studentState:StudentState=useSelector<StoreState>(state=>state.student) as StudentState
     const examState:ExamState=useSelector<StoreState>(state=>state.exam) as ExamState
-    console.log("STUDENT ",studentState)
    
     return (
         <div className="navbar">

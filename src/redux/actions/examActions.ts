@@ -23,17 +23,12 @@ export const loadQuestion = () => {
   };
 };
 export const getQuestionAction = (alreadyUsedQuestions: string[]) => {
-  console.log(
-    "🚀 ~ file: studentActions.ts ~ line 6 ~ name",
-    alreadyUsedQuestions
-  );
   return async (dispatch: Function) => {
     const response = await axios.get<OriginalQuestion>(
       `${ROOT_URL}/api/question?alreadyUsedIds=${JSON.stringify(
         alreadyUsedQuestions
       )}`
     );
-    console.log("RESPONSE DATAAAAAAAAAAAA ", response.data);
     let answers = response.data.answers.map((answer: string, index: number) => {
       return {
         index,
