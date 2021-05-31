@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {useHistory} from "react-router-dom"
 
 import { Button,Form } from 'react-bootstrap';
@@ -19,9 +19,15 @@ function StudentForm() {
     e.preventDefault()
     dispatch(loadStudent())
     dispatch(createStudent(username))
-    history.push("/exam")
+ 
 
   }
+  useEffect(()=>{
+    if(studentState.name){
+      history.push("/exam")
+    }
+    
+  },[studentState.name])
   let onchange=(e:any)=>{
     let value=e.target.value;
     setUsername(value)

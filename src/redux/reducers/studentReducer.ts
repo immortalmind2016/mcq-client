@@ -5,12 +5,14 @@ export const studentReducer = (
   action: Action
 ) => {
   console.log("ACTION ", action);
+  let payload: Student = action.payload as Student;
+
   switch (action.type) {
     case ACTION_TYPES.CREATE_STUDENT:
       return {
         ...state,
-        name: action.payload.name,
-        id: action.payload.id,
+        name: payload.name,
+        id: payload.id,
         loading: false,
       };
     case ACTION_TYPES.LOADING:

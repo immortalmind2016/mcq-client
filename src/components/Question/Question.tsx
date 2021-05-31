@@ -16,11 +16,12 @@ const Question = ({
         <div className="question">
           <p>{description}</p>
           <div className="q-options mb-3">
-          {answers.map((answer)=>(
-                 <Form.Check 
+          {answers&&answers.map((answer)=>(
+                 <Form.Check
+                
                  type={type}
-                 id={`default-${type}`}
-                 label={`default ${type}`}
+                 id={String(answer.index)}
+                 label={`${answer.value}`}
                />
             ))}
           </div>

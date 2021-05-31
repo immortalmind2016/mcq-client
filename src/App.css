@@ -52,6 +52,7 @@ body {
   background-color: white;
   padding: 40px 22px;
   border-radius: 10px;
+  min-height: 38vh;
 }
 .overlay {
   position: absolute;

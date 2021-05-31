@@ -3,8 +3,8 @@ import {
   GetQuestionAction,
   Question,
   OriginalQuestion,
-  Answer,
   AnswerQuestionAction,
+  Answer,
 } from "../../types";
 import axios from "axios";
 import { config } from "../../config";
@@ -56,6 +56,11 @@ const _answerQuestion: (data: Answer) => AnswerQuestionAction = (
   return {
     type: ACTION_TYPES.ANSWER_QUESTION,
     payload: data,
+  };
+};
+export const nextQuestionAction = () => {
+  return {
+    type: ACTION_TYPES.NEXT_QUESTION,
   };
 };
 export const answerQuestionAction = (

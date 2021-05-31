@@ -1,7 +1,6 @@
 import { ACTION_TYPES, CreateStudentAction, Student } from "../../types";
 import axios from "axios";
 import { config } from "../../config";
-import { Dispatch } from "react";
 const { ROOT_URL } = config;
 const _createStudent: (data: Student) => CreateStudentAction = (
   data: Student
