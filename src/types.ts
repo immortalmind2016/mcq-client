@@ -5,6 +5,7 @@ export enum ACTION_TYPES {
   GET_QUESTION,
   ANSWER_QUESTION,
   NEXT_QUESTION,
+  SUBMIT_EXAM,
 }
 export interface Student {
   name: string;
@@ -52,4 +53,5 @@ export interface Exam {
   questionIndex: number;
   maxQuestionsNo: number;
   currentQuestion: Question;
+  score: number;
 }

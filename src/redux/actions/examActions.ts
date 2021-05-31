@@ -33,7 +33,7 @@ export const getQuestionAction = (alreadyUsedQuestions: string[]) => {
         alreadyUsedQuestions
       )}`
     );
-
+    console.log("RESPONSE DATAAAAAAAAAAAA ", response.data);
     let answers = response.data.answers.map((answer: string, index: number) => {
       return {
         index,
@@ -70,5 +70,22 @@ export const answerQuestionAction = (
 ) => {
   return (dispatch: Function) => {
     dispatch(_answerQuestion({ questionId, correctAnswerIndex, answerIndex }));
+  };
+};
+
+export const submitExamAction = (studentId: string, answers: Answer[]) => {
+  return async (dispatch: Function) => {
+    const response = await axios.post<{ score: number }>(
+      `${ROOT_URL}/api/exam`,
+      {
+        studentId,
+        answers,
+      }
+    );
+
+    dispatch({
+      type: ACTION_TYPES.SUBMIT_EXAM,
+      payload: response.data.score,
+    });
   };
 };

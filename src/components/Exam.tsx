@@ -3,8 +3,8 @@ import { Button } from 'react-bootstrap';
 import Loader from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { nextQuestionAction } from '../redux/actions/examActions';
-import { getQuestionAction } from '../redux/actions/questionActions';
+import { answerQuestionAction, nextQuestionAction, submitExamAction } from '../redux/actions/examActions';
+import { getQuestionAction } from '../redux/actions/examActions';
 import { ExamState } from '../redux/reducers/examReducer';
 import { StudentState } from '../redux/reducers/studentReducer';
 import { StoreState } from '../redux/store';
@@ -22,6 +22,7 @@ const Exam = () => {
     const [question,setQuestion]=useState<QType>()
     const [loadQuestion,setLoadQuestion]=useState(true)
     const [loading,setLoading]=useState(true)
+    const [answerIndex,setAnswerIndex]=useState(0)
    
 
     const disptach=useDispatch()
@@ -47,15 +48,18 @@ const Exam = () => {
        
         console.log("🚀 ~ file: Exam.tsx ~ line 29 ~ Exam ~ examState", examState)
 
-            let q=examState.currentQuestion
+            let q :any=examState.currentQuestion
             if(q){
                    //@ts-ignore
              q.answers=shuffle(q.answers)
-             console.log("+++++++++++++++++++++++++++++++++++++++++")
              setQuestion(q)
+             setAnswerIndex(q.answers[0].index)
              setLoading(false)
              setLoadQuestion(false)
             }
+       }
+       if(examState.questionIndex>examState.maxQuestionsNo){
+            disptach(submitExamAction(studentState.id, examState.answers))
        }
     },[examState.currentQuestion])
     useEffect(()=>{
@@ -71,10 +75,17 @@ const Exam = () => {
         setLoading(true)
         setLoadQuestion(true)
        disptach(getQuestionAction(examState.alreadyUsedIds))
+       let id=question?.id as string
+       let correctAnswerIndex=question?.correctAnswerIndex as number
+        disptach(answerQuestionAction(id,correctAnswerIndex,answerIndex))
     }
- 
+    
+    const change=(e: React.FormEvent<HTMLInputElement>)=>{
+        setAnswerIndex(Number(e.currentTarget.id))
+    }
 
     return (
+        
         <div>
               {loading&&<div className="overlay" >  <Loader
         type="Oval"
@@ -83,9 +94,12 @@ const Exam = () => {
         width={100}
      
       /></div>}
-         {examState.questionIndex>examState.maxQuestionsNo&&<div className="overlay">Finally you finished the exam</div>}
+         {examState.questionIndex>examState.maxQuestionsNo&&<div className="overlay">
+             {examState.score==-1?"Caclulating your score...":<div>Your score is : <h3>{examState.score}</h3></div>}
 
-            {question&& <>   <Question description={question.description as string} answers={question.answers as {index:number,value:string}[]} correctAnswerIndex={0}></Question><Button onClick={next} variant="success">Next</Button> </> }
+         </div>}
+
+            {question&& <>    <Question description={question.description as string} change={change} answers={question.answers as {index:number,value:string}[]} correctAnswerIndex={0}></Question><Button onClick={next} variant="success">Next</Button> </> }
          
         
 

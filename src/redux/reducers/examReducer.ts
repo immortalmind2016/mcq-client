@@ -16,12 +16,13 @@ export const examReducer = (
     questionIndex: 1,
     maxQuestionsNo: 5,
     currentQuestion: null as any,
-
+    score: -1,
     answers: [],
   },
   action: Action
 ) => {
-  let payload: Question = action.payload as Question;
+  let payload: any = action.payload;
+
   switch (action.type) {
     case ACTION_TYPES.GET_QUESTION:
       return {
@@ -39,6 +40,12 @@ export const examReducer = (
       return {
         ...state,
         questionIndex: state.questionIndex + 1,
+      };
+    }
+    case ACTION_TYPES.SUBMIT_EXAM: {
+      return {
+        ...state,
+        score: payload,
       };
     }
 
