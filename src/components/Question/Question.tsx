@@ -27,7 +27,7 @@ const Question = ({
                   name="answerOption"
                  type={type}
                  id={String(answer.index)}
-                 label={`${answer.value} - ${answer.index}`}
+                 label={`${answer.value}`}
                />
             ))}
           </div>
